@@ -73,7 +73,6 @@ class _InputPageState extends State<InputPage>{
 
               child: ReusableCard(
                 colour:activeCardColour,
-                cardChild: IconContent(icon: FontAwesomeIcons.venus, label:"FEMALE"),
               ),
           ),
           Expanded(
@@ -82,13 +81,11 @@ class _InputPageState extends State<InputPage>{
                 Expanded(
                   child: ReusableCard(
                     colour:activeCardColour,
-                    cardChild: IconContent(icon: FontAwesomeIcons.venus, label:"FEMALE"),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     colour:activeCardColour,
-                    cardChild: IconContent(icon: FontAwesomeIcons.venus, label:"FEMALE"),
                   ),
                 )
               ],

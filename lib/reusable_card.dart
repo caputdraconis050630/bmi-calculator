@@ -3,9 +3,9 @@ import 'main.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ReusableCard extends StatelessWidget {
-  ReusableCard({required this.colour, required this.cardChild});
+  ReusableCard({required this.colour, this.cardChild});
 
-  final Widget cardChild;
+  final Widget? cardChild;
   final Color colour;
 
 
