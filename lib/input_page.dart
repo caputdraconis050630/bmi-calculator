@@ -26,10 +26,16 @@ class _InputPageState extends State<InputPage>{
 
   int height = 180;
   int weight = 60;
+  int age = 20;
 
-  void whatTodo(){
-    weight++;
+  void setWeight(int delta){
+    weight += delta;
   }
+
+  void setAge(int delta){
+    age += delta;
+  }
+
 
   @override
   Widget build(BuildContext context){
@@ -130,10 +136,10 @@ class _InputPageState extends State<InputPage>{
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundIconButton(
-                              icon: Icons.add,
-                              onPressed: (){
+                              icon: FontAwesomeIcons.minus,
+                              onPressedFunc: (){
                                 setState(() {
-                                  weight ++;
+                                  setWeight(-1);
                                 });
                               },
                             ),
@@ -141,12 +147,12 @@ class _InputPageState extends State<InputPage>{
                               width:10.0,
                             ),
                             RoundIconButton(
-                              onPressed: (){
+                              onPressedFunc: (){
                                 setState(() {
-                                  weight--;
+                                  setWeight(1);
                                 });
                               },
-                              icon: Icons.add,
+                              icon: FontAwesomeIcons.plus,
                             ),
                           ],
                         )
@@ -157,6 +163,43 @@ class _InputPageState extends State<InputPage>{
                 Expanded(
                   child: ReusableCard(
                     colour:kActiveCardColour,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "AGE",
+                          style:kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style:kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressedFunc: (){
+                                setState(() {
+                                  setAge(-1);
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width:10.0,
+                            ),
+                            RoundIconButton(
+                              onPressedFunc: (){
+                                setState(() {
+                                  setAge(1);
+                                });
+                              },
+                              icon: FontAwesomeIcons.plus,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -176,22 +219,23 @@ class _InputPageState extends State<InputPage>{
 
 class RoundIconButton extends StatelessWidget {
 
-  RoundIconButton({required this.icon, required this.onPressed});
+  RoundIconButton({required this.icon, required this.onPressedFunc});
   final IconData icon;
-  final Function onPressed;
+  final Function onPressedFunc;
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
       child: Icon(icon),
-      onPressed: onPressed(),
-      elevation: 6.0,
-      disabledElevation: 6.0,
+      onPressed: (){
+        onPressedFunc();
+      },
+      elevation: 0.0,
       constraints: BoxConstraints.tightFor(
         width: 56.0,
         height: 56.0,
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      shape: CircleBorder(),
       fillColor: Color(0xFF4C4F5E),
     );
   }
